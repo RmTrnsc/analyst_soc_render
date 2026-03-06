@@ -12,6 +12,26 @@
 	<div class="box">
 		<h1>Welcome to SEC-LAB</h1>
 		<p>Your target is here. Can you find the leaks?</p>
+		<p style="margin-top: 50px;">Your objective is to compromise the SEC-LAB server by following a logical progression
+			that simulates a real
+			intrusion. The challenge is successful once all 7 flags are recovered. Here is what is expected for each step of
+			your progression:</p>
+		<ul style="text-align: left; list-style-type: '→ '; padding-left: 20px; line-height: 1.6;">
+			<li><b>Flag 1:</b> Analyze the server's public exposure surface to detect hidden information in the front-end
+				components.</li>
+			<li><b>Flag 2:</b> Manipulate the web application's data inputs to force the extraction of sensitive information
+				from the database.</li>
+			<li><b>Flag 3:</b> Explore the local file system to identify inconsistencies in the management of execution
+				rights.</li>
+			<li><b>Flag 4:</b> Conduct in-depth network reconnaissance to interact with undocumented services listening on
+				specific ports.</li>
+			<li><b>Flag 5:</b> Exploit a file management vulnerability to achieve remote code execution (RCE) on the server.
+			</li>
+			<li><b>Flag 6:</b> Analyze the system's automation mechanisms to elevate your privileges and obtain full
+				administrative access (Root).</li>
+			<li><b>Flag 7:</b> Exfiltrate and break the cryptographic protection of a secret stored in the most protected
+				directory of the machine.</li>
+		</ul>
 	</div>
 	<div id="flagModal" class="modal">
 		<div class="modal-content">
