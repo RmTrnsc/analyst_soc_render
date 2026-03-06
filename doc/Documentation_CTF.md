@@ -137,43 +137,50 @@ Utilisation d'une injection de type `' OR 1=1 --` sur le formulaire d'authentifi
 
 ---
 
-## Flag 3 : Binaire SUID (Analyse de droits)
+## Flag 3 : RCE (Upload de fichier)
 
-**Objectif :** Identifier un binaire avec des droits root mal configurés.
+**Objectif :** Obtenir une exécution de commande système via un upload non sécurisé.
 
 **Procédure pour la création du flag :**
-Création du dossier `mkdir -p /opt/ctf_services` et d'un binaire SUID vulnérable.
-
-```c
-// Fichier : /opt/ctf_services/flag_reader.c
-# Code source simple affichant le flag
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-
-int main() {
-    // On force l'UID à 0 (root) pour que le binaire s'exécute vraiment avec ses privilèges
-    setuid(0);
-    printf("\n[+] System Check Tool v1.0\n");
-    printf("[*] Integrity Status: OPTIMAL\n");
-    printf("[*] Secret Key Found: FLAG_3{SUID_EXPLOITER_PRO}\n\n");
-    return 0;
-}
-```
-
-Compilation et mise en place du bit SUID
 
 ```bash
-sudo gcc /root/flag_reader.c -o /usr/local/bin/flag_reader
-sudo chown root:root /usr/local/bin/flag_reader
-sudo chmod 4755 /usr/local/bin/flag_reader
+# Création d'un dossier d'upload vulnérable pour le serveur web
+sudo mkdir /var/www/html/uploads
+sudo chown www-data:www-data /var/www/html/uploads
+# Création du flag protégé à la racine
+echo "FLAG_3{RCE_BY_UPLOAD_33}" | sudo tee /flag3.txt
+```
+
+```
+# Création du fichier : /var/www/html/upload.php
+<?php
+if(isset($_FILES['file'])){
+    $target = "uploads/" . basename($_FILES['file']['name']);
+    if(move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
+        echo "File uploaded to: " . $target;
+    } else {
+        echo "Upload failed.";
+    }
+}
+?>
+<html>
+<head><link rel="stylesheet" href="style.css"></head>
+<body>
+    <div class="box">
+        <h2>Member Profile Picture Update</h2>
+        <form enctype="multipart/form-data" method="POST">
+            <input type="file" name="file">
+            <button type="submit">Upload</button>
+        </form>
+    </div>
+</body>
+</html>
 ```
 
 **Méthode de résolution :**
-Recherche des fichiers SUID via la commande `find / -perm -4000 2>/dev/null`. L'exécution du binaire `/usr/local/bin/flag_reader` affiche le flag.
+Upload d'un web shell ou reverse shell PHP (ex: `<?php system($_GET['cmd']); ?>`). Utilisation du shell pour naviguer et lire le fichier `/flag3.txt`.
 
-> **Flag 3 :** `FLAG_3{SUID_EXPLOITER_PRO}`
-
+> **Le Flag 3 :** `FLAG_3{RCE_BY_UPLOAD_33}`
 ---
 
 ## Flag 4 : Service Réseau (Interrogation de Port)
@@ -230,50 +237,42 @@ Scan de ports avec `nmap -sV -Pn -p- [IP]`. Test d'attaque depuis une autre mach
 
 ---
 
-## Flag 5 : RCE (Upload de fichier)
+## Flag 5 : Binaire SUID (Analyse de droits)
 
-**Objectif :** Obtenir une exécution de commande système via un upload non sécurisé.
+**Objectif :** Identifier un binaire avec des droits root mal configurés.
 
 **Procédure pour la création du flag :**
+Création du dossier `mkdir -p /opt/ctf_services` et d'un binaire SUID vulnérable.
+
+```c
+// Fichier : /opt/ctf_services/flag_reader.c
+# Code source simple affichant le flag
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+int main() {
+    // On force l'UID à 0 (root) pour que le binaire s'exécute vraiment avec ses privilèges
+    setuid(0);
+    printf("\n[+] System Check Tool v1.0\n");
+    printf("[*] Integrity Status: OPTIMAL\n");
+    printf("[*] Secret Key Found: FLAG_5{SUID_EXPLOITER_PRO}\n\n");
+    return 0;
+}
+```
+
+Compilation et mise en place du bit SUID
 
 ```bash
-# Création d'un dossier d'upload vulnérable pour le serveur web
-sudo mkdir /var/www/html/uploads
-sudo chown www-data:www-data /var/www/html/uploads
-# Création du flag protégé à la racine
-echo "FLAG_5{RCE_BY_UPLOAD_33}" | sudo tee /flag5.txt
-```
-
-```
-# Création du fichier : /var/www/html/upload.php
-<?php
-if(isset($_FILES['file'])){
-    $target = "uploads/" . basename($_FILES['file']['name']);
-    if(move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
-        echo "File uploaded to: " . $target;
-    } else {
-        echo "Upload failed.";
-    }
-}
-?>
-<html>
-<head><link rel="stylesheet" href="style.css"></head>
-<body>
-    <div class="box">
-        <h2>Member Profile Picture Update</h2>
-        <form enctype="multipart/form-data" method="POST">
-            <input type="file" name="file">
-            <button type="submit">Upload</button>
-        </form>
-    </div>
-</body>
-</html>
+sudo gcc /opt/ctf_services/flag_reader.c -o /usr/local/bin/flag_reader
+sudo chown root:root /usr/local/bin/flag_reader
+sudo chmod 4755 /usr/local/bin/flag_reader
 ```
 
 **Méthode de résolution :**
-Upload d'un web shell ou reverse shell PHP (ex: `<?php system($_GET['cmd']); ?>`). Utilisation du shell pour naviguer et lire le fichier `/flag5.txt`.
+Recherche des fichiers SUID via la commande `find / -perm -4000 2>/dev/null`. L'exécution du binaire `/usr/local/bin/flag_reader` affiche le flag.
 
-> **Le Flag 5 :** `FLAG_5{RCE_BY_UPLOAD_33}`
+> **Flag 5 :** `FLAG_5{SUID_EXPLOITER_PRO}`
 
 ---
 
