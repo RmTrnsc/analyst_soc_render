@@ -1,0 +1,140 @@
+body {
+  background-color: #010409;
+  color: #39ff14;
+  font-family: "Courier New", Courier, monospace;
+  text-align: center;
+  padding: 50px;
+  text-shadow: 0 0 8px rgba(57, 255, 20, 0.6);
+}
+
+body::before {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background:
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%),
+    linear-gradient(
+      90deg,
+      rgba(255, 0, 0, 0.03),
+      rgba(0, 255, 0, 0.01),
+      rgba(0, 0, 255, 0.03)
+    );
+  z-index: 9999;
+  pointer-events: none;
+  background-size:
+    100% 3px,
+    2px 100%;
+}
+
+.box,
+.box-max {
+  border: 1px solid #39ff14;
+  padding: 30px;
+  background: rgba(13, 17, 23, 0.9);
+  box-shadow: 0 0 20px rgba(57, 255, 20, 0.3);
+  border-radius: 2px;
+  display: inline-block;
+}
+
+.validations {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5em;
+}
+
+.validations .box-max {
+  display: block;
+  width: 80%;
+  max-width: 800px;
+}
+
+.validations .clear-form {
+  margin-top: 30px;
+}
+
+.box-max table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+h1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  background: transparent;
+  color: #39ff14;
+  border: 1px solid #39ff14;
+  padding: 10px 25px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #39ff14;
+  color: #000;
+  box-shadow: 0 0 30px #39ff14;
+}
+
+input {
+  background: #000;
+  border: 1px solid #39ff14;
+  color: #39ff14;
+  padding: 10px;
+  outline: none;
+}
+
+.modal {
+  background-color: rgba(0, 0, 0, 0.95);
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+  background-color: #0d1117;
+  margin: 15% auto;
+  padding: 20px;
+  border: 2px solid #238636;
+  width: 50%;
+  color: #39ff14;
+  font-family: "Courier New", monospace;
+  box-shadow: 0 0 2px #238636;
+  border-radius: 2px;
+}
+
+.modal-header {
+  border-bottom: 1px solid #30363d;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  color: #8b949e;
+  font-size: 12px;
+}
+#flagText {
+  word-wrap: break-word;
+  font-weight: bold;
+}
+.close-btn {
+  color: #f85149;
+  float: right;
+  cursor: pointer;
+  font-weight: bold;
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" href="style.css">
+	<link rel="icon"
+		href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
+	<title>SEC-LAB CTF</title>
+</head>
+
+<body>
+	<div class="box">
+		<h1>Welcome to SEC-LAB</h1>
+		<p>Your target is here. Can you find the leaks?</p>
+	</div>
+	<div id="flagModal" class="modal">
+		<div class="modal-content">
+			<div class="modal-header">
+				<span class="close-btn" onclick="document.getElementById('flagModal').style.display='none'">&times;
+					[CLOSE]</span>
+				SYSTEM_OVERRIDE_SUCCESSFUL
+			</div>
+			<p id="flagText"></p>
+		</div>
+	</div>
+
+	<script>
+		console.log("System status: OK. Debug mode: %cDISABLED", "color: red; font-weight: bold;");
+		let buffer = [];
+		const secretCode = [67, 84, 70, 82, 79, 67, 75, 83, 84, 65, 82];
+
+		document.addEventListener('keydown', (e) => {
+			buffer.push(e.keyCode);
+			buffer = buffer.slice(-secretCode.length);
+
+			if (JSON.stringify(buffer) === JSON.stringify(secretCode)) {
+				showSecretModal();
+			}
+		});
+
+		function showSecretModal() {
+			const _0x5a21 = ["\x46\x4c\x41\x47\x5f\x31\x7b\x4a\x53\x5f\x30\x42\x46\x55\x53\x43\x34\x54\x31\x30\x4e\x5f\x57\x31\x5a\x34\x52\x44\x7d"];
+
+
+			const modal = document.getElementById("flagModal");
+			const text = document.getElementById("flagText");
+
+			text.innerHTML = "[*] Accessing encrypted memory area...<br>";
+			setTimeout(() => {
+				text.innerHTML += "[*] Decrypting sequence...<br>";
+				setTimeout(() => {
+					text.innerHTML += "[+] SUCCESS: " + _0x5a21[0];
+					setTimeout(() => {
+						console.log("System status: %cGRANTED", "color: #39ff14; font-weight: bold;");
+						text.innerHTML += "<br><a href='ctf_validations.php' style='color: #39ff14; text-decoration: underline;'>Validate your ctf</a>";
+					}, 500);
+				}, 500);
+			}, 500);
+
+			modal.style.display = "block";
+		}
+	</script>
+</body>
+
+</html>
