@@ -15,7 +15,7 @@ if (isset($_POST['user'])) {
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
                 if (strpos($row['flag'], 'FLAG_2') !== false) {
-                    $output .= "<span style='color: #39ff14;'>[!] EXPLOIT SUCCESS: " . $row["flag"] . "</span><br>";
+                    $output .= "<span style='color: #39ff14 !important;'>[!] EXPLOIT SUCCESS: " . $row["flag"] . "</span><br>";
                 } else {
                     $output .= "System Message: " . $row["flag"] . "<br>";
                 }
