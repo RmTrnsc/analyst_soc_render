@@ -95,7 +95,7 @@ if (isset($_POST['flag']) && !empty(trim($_POST['flag']))) {
   <div id="resultModal" class="modal">
     <div class="modal-content">
       <div class="modal-header">
-        <span class="close-btn">&times;</span>
+        <span class="close-btn">&times;[CLOSE]</span>
         <h2>Validation Result</h2>
       </div>
       <p id="modalOutputText"></p>
