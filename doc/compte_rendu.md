@@ -24,10 +24,10 @@ Terraform a été utilisé pour le provisioning de l'infrastructure. Le code a �
 
 On peut voir ci-dessous le fichier `main.tf` qui définit les ressources à créer, ainsi que le fichier de variables `vars.tf`.
 
-![Fichier main.tf](assets/terraform/main_tf.png)
-![Fichier main.tf 2](assets/terraform/main_tf_2.png)
+![Fichier main.tf](https://github.com/RmTrnsc/analyst_soc_render/blob/main/assets/terraform/main_tf.png)
+![Fichier main.tf 2](https://github.com/RmTrnsc/analyst_soc_render/blob/main/assets/terraform/main_tf_2.png)
 
-![Fichier de variables](assets/terraform/vars.png)
+![Fichier de variables](https://github.com/RmTrnsc/analyst_soc_render/blob/main/assets/terraform/vars.png)
 
 L'exécution de `terraform plan` et `terraform apply` a permis de créer l'infrastructure nécessaire. Le compte rendu de l'exécution est visible dans le fichier `terraform_plan_apply.md`.
 
@@ -37,11 +37,15 @@ Une fois l'infrastructure provisionnée, Ansible a été utilisé pour automatis
 
 Ci-dessous, le playbook pour l'installation de Docker et la configuration des utilisateurs.
 
-![Installation d'Ansible](assets/ansible/installation.png)
-![Fichier d'inventaire hosts](assets/ansible/hosts.png)
-![Playbook d'installation de Docker](assets/ansible/install_docker.png)
-![Vérification de l'installation de Docker](assets/ansible/docker.png)
-![Gestion des utilisateurs et groupes](assets/ansible/user_groups.png)
+![Installation d'Ansible](https://github.com/RmTrnsc/analyst_soc_render/blob/main/assets/ansible/installation.png)
+
+![Fichier d'inventaire hosts](https://github.com/RmTrnsc/analyst_soc_render/blob/main/assets/ansible/hosts.png)
+
+![Playbook d'installation de Docker](https://github.com/RmTrnsc/analyst_soc_render/blob/main/assets/ansible/install_docker.png)
+
+![Vérification de l'installation de Docker](https://github.com/RmTrnsc/analyst_soc_render/blob/main/assets/ansible/docker.png)
+
+![Gestion des utilisateurs et groupes](https://github.com/RmTrnsc/analyst_soc_render/blob/main/assets/ansible/user_groups.png)
 
 ---
 
@@ -51,12 +55,12 @@ Ci-dessous, le playbook pour l'installation de Docker et la configuration des ut
 
 Wazuh a été déployé en tant que SIEM principal pour la collecte de logs et la détection d'intrusions sur les hôtes. Le déploiement a été réalisé à l'aide de Docker Compose, en clônant le dépôt officiel.
 
-![Clone du dépôt Wazuh](assets/wazuh/git_clone.png)
-![Fichier Docker Compose de Wazuh](assets/wazuh/docker-compose.png)
+![Clone du dépôt Wazuh](https://github.com/RmTrnsc/analyst_soc_render/blob/main/assets/wazuh/git_clone.png)
+![Fichier Docker Compose de Wazuh](https://github.com/RmTrnsc/analyst_soc_render/blob/main/assets/wazuh/docker-compose.png)
 
 Un agent Wazuh a été déployé sur la machine cible CTF pour collecter et remonter les logs système et applicatifs vers le manager.
 
-![Installation de l'agent Wazuh](assets/wazuh/wazuh_agent.png)
+![Installation de l'agent Wazuh](https://github.com/RmTrnsc/analyst_soc_render/blob/main/assets/wazuh/wazuh_agent.png)
 
 Grâce à cette configuration, j'ai pu détecter plusieurs types d'activités malveillantes :
 
@@ -64,9 +68,11 @@ Grâce à cette configuration, j'ai pu détecter plusieurs types d'activités ma
 - **Détection de binaire malveillant** : Un fichier suspect a été identifié.
 - **Suppression de malware** : L'agent a réagi en supprimant le fichier malveillant.
 
-![Détection d'une tentative SQLi](assets/wazuh/sql_attempt.png)
-![Détection d'un binaire suspect](assets/wazuh/detect_binary.png)
-![Suppression du malware](assets/wazuh/detect_remove_maware.png)
+![Détection d'une tentative SQLi](https://github.com/RmTrnsc/analyst_soc_render/blob/main/assets/wazuh/sql_attempt.png)
+
+![Détection d'un binaire suspect](https://github.com/RmTrnsc/analyst_soc_render/blob/main/assets/wazuh/detect_binary.png)
+
+![Suppression du malware](https://github.com/RmTrnsc/analyst_soc_render/blob/main/assets/wazuh/detect_remove_maware.png)
 
 ### Splunk - Analyse et Corrélation de Logs
 
@@ -74,20 +80,20 @@ Splunk a été utilisé en complément de Wazuh pour l'analyse avancée et la co
 
 L'instance Splunk a également été déployée via Docker.
 
-![Installation de Splunk](assets/splunk/installation.png)
-![Démarrage de Splunk](assets/splunk/start.png)
+![Installation de Splunk](https://github.com/RmTrnsc/analyst_soc_render/blob/main/assets/splunk/installation.png)
+![Démarrage de Splunk](https://github.com/RmTrnsc/analyst_soc_render/blob/main/assets/splunk/start.png)
 
 J'ai pu visualiser les logs Docker et les alertes remontées, comme la tentative d'injection SQL détectée initialement par Wazuh.
 
-![Logs Docker dans Splunk](assets/splunk/docker_logs.png)
-![Alerte d'injection SQL dans Splunk](assets/splunk/sql_attempt.png)
+![Logs Docker dans Splunk](https://github.com/RmTrnsc/analyst_soc_render/blob/main/assets/splunk/docker_logs.png)
+![Alerte d'injection SQL dans Splunk](https://github.com/RmTrnsc/analyst_soc_render/blob/main/assets/splunk/sql_attempt.png)
 
 ### Suricata - Détection d'Intrusions Réseau (IDS)
 
 Pour surveiller le trafic réseau, j'ai déployé Suricata. Cet outil analyse les paquets en temps réel et détecte les signatures d'attaques connues.
 
-![Installation de Suricata](assets/suricata/installation.png)
-![Configuration de Suricata](assets/suricata/configuration.png)
+![Installation de Suricata](https://github.com/RmTrnsc/analyst_soc_render/blob/main/assets/suricata/installation.png)
+![Configuration de Suricata](https://github.com/RmTrnsc/analyst_soc_render/blob/main/assets/suricata/configuration.png)
 
 ---
 
