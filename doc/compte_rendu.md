@@ -1,5 +1,7 @@
 # Compte Rendu du Projet : Déploiement d'un SOC/SIEM avec Scénario CTF
 
+[lien github](https://github.com/RmTrnsc/analyst_soc_render/tree/main)
+
 ## Introduction
 
 Ce projet a pour objectif de simuler un environnement de Centre des Opérations de Sécurité (SOC) réaliste. L'infrastructure mise en place comprend une stack de sécurité défensive (Blue Team) chargée de surveiller et d'analyser les activités sur une machine cible vulnérable, tandis qu'une équipe offensive (Red Team) tente de compromettre cette machine et de capturer des "flags".
